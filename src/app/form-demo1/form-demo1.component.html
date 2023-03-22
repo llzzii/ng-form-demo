@@ -1,0 +1,107 @@
+<div class="grid">
+  <div class="col-6 col-offset-2">
+    <form #demoForm="ngForm" (submit)="onSubmit(demoForm)">
+      <div class="card p-fluid">
+        <div class="field grid">
+          <label
+            htmlFor="name"
+            class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+            >姓名:<span style="color: firebrick">*</span></label
+          >
+          <div class="col-12 md:col-9">
+            <input
+              pInputText
+              id="name"
+              type="text"
+              name="name"
+              placeholder="真实姓名"
+              [(ngModel)]="formObj.name"
+              [required]="true"
+              #name="ngModel"
+            />
+            <small *ngIf="name.touched && !name.valid && name.errors">
+              <div *ngIf="name.errors['required']">请填写用户名</div>
+              <div *ngIf="name.errors['pattern']">不符合正则规则</div>
+            </small>
+          </div>
+        </div>
+        <div class="field grid">
+          <label
+            htmlFor="sex"
+            class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+            >性别:<span style="color: firebrick">*</span></label
+          >
+          <div class="col-12 md:col-9">
+            <p-selectButton
+              [options]="xMale"
+              optionLabel="name"
+              name="sex"
+              [(ngModel)]="formObj.sex"
+              optionValue="code"
+              [required]="true"
+              #sex="ngModel"
+            ></p-selectButton>
+            <small *ngIf="sex.touched && !sex.valid && sex.errors">
+              <div *ngIf="sex.errors['required']">必填</div>
+            </small>
+          </div>
+        </div>
+        <div class="field grid">
+          <label
+            htmlFor="birthDate"
+            class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+            >出生日期:<span style="color: firebrick">*</span></label
+          >
+          <div class="col-12 md:col-9">
+            <p-calendar
+              [showIcon]="true"
+              name="birthDate"
+              [required]="true"
+              #birthDate="ngModel"
+              [selectOtherMonths]="true"
+              dateFormat="yy-mm-dd"
+              [(ngModel)]="formObj.birthDate"
+              inputId="birthDate"
+            ></p-calendar>
+            <small
+              *ngIf="birthDate.touched && !birthDate.valid && birthDate.errors"
+            >
+              <div *ngIf="birthDate.errors['required']">必填</div>
+            </small>
+          </div>
+        </div>
+        <div class="field grid">
+          <label
+            htmlFor="educationLevel"
+            class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+            >最高学历:<span style="color: firebrick">*</span></label
+          >
+          <div class="col-12 md:col-9">
+            <p-dropdown
+              [options]="educationLevels"
+              [style]="{ 'font-size': 'large' }"
+              optionLabel="name"
+              name="educationLevel"
+              [required]="true"
+              #educationLevel="ngModel"
+              [(ngModel)]="formObj.educationLevel"
+              optionValue="code"
+            ></p-dropdown>
+            <small
+              *ngIf="
+                educationLevel.touched &&
+                !educationLevel.valid &&
+                educationLevel.errors
+              "
+            >
+              <div *ngIf="educationLevel.errors['required']">必填</div>
+            </small>
+          </div>
+        </div>
+        <div class="field grid justify-content-center">
+          <button type="submit" pButton pRipple>提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
