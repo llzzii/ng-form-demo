@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms'
   styleUrls: ['./form-demo1.component.scss']
 })
 export class FormDemo1Component {
+  // 模板驱动式表单
   selectedCity1: string = ''
   xMale = [
     { name: '男', code: '0' },

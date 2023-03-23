@@ -7,6 +7,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./form-demo1/form-demo1.module').then((m) => m.FormDemo1Module)
   },
+  {
+    path: 'form2',
+    loadChildren: () =>
+      import('./form-demo2/form-demo2.module').then((m) => m.FormDemo2Module)
+  },
 ];
 
 @NgModule({

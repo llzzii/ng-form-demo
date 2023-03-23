@@ -1,0 +1,175 @@
+<div class="grid">
+  <div class="col-6 col-offset-2">
+    <h4>响应式表单</h4>
+
+    <form [formGroup]="form">
+      <div class="card p-fluid">
+        <div class="field grid">
+          <label
+            htmlFor="name"
+            class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+            >姓名:<span style="color: firebrick">*</span></label
+          >
+          <div class="col-12 md:col-9">
+            <input
+              pInputText
+              id="name"
+              type="text"
+              name="name"
+              placeholder="真实姓名"
+              formControlName="name"
+            />
+
+            <!-- *ngIf="validateForm.get('tel')?.dirty && validateForm.get('tel')?.errors" -->
+            <small
+              [class]="{
+                'form-prompt': true,
+                'form-error':
+                  form.get('name')?.dirty && form.get('name')?.errors
+              }"
+            >
+              请输入以字母开头,3到15位名称
+            </small>
+          </div>
+        </div>
+        <div class="field grid">
+          <label
+            htmlFor="tel"
+            class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+            >电话:<span style="color: firebrick">*</span></label
+          >
+          <div class="col-12 md:col-9">
+            <input
+              pInputText
+              id="tel"
+              type="text"
+              name="tel"
+              placeholder="电话"
+              formControlName="tel"
+            />
+          </div>
+        </div>
+        <div class="field grid">
+          <label
+            htmlFor="confirmTel"
+            class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+            >确认电话:<span style="color: firebrick">*</span></label
+          >
+          <div class="col-12 md:col-9">
+            <input
+              pInputText
+              id="confirmTel"
+              type="text"
+              name="confirmTel"
+              placeholder="电话"
+              formControlName="confirmTel"
+            />
+          </div>
+        </div>
+        <div class="field grid">
+          <label
+            htmlFor="sex"
+            class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+            >联系方式:<span style="color: firebrick">*</span></label
+          >
+          <div class="col-12 md:col-9" formArrayName="contacts">
+            <div
+              class="formgrid grid"
+              *ngFor="let contact of contacts.controls; let i = index"
+              [formGroupName]="i"
+            >
+              <div class="field col-4">
+                <input
+                  pInputText
+                  type="text"
+                  name="username"
+                  placeholder="用户"
+                  formControlName="username"
+                  class=""
+                />
+              </div>
+              <div class="field col-4">
+                <input
+                  pInputText
+                  type="text"
+                  name="address"
+                  placeholder="地址"
+                  formControlName="address"
+                />
+              </div>
+
+              <div class="field col-3">
+                <input
+                  pInputText
+                  type="text"
+                  name="phone"
+                  placeholder="电话"
+                  formControlName="phone"
+                />
+              </div>
+              <div class="field col-1">
+                <button type="button" [disabled]="i==0" pButton pRipple class="p-button-text p-button-sm pl-0" (click)="removeContact(i)"><i class="pi pi-times"></i></button>
+              </div>
+            </div>
+            <div>
+                <button type="button" pButton pRipple class="p-button-text p-button-sm" (click)="addContact()"><i class="pi pi-plus"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="field grid">
+          <label
+            htmlFor="sex"
+            class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+            >性别:<span style="color: firebrick">*</span></label
+          >
+          <div class="col-12 md:col-9">
+            <p-selectButton
+              [options]="xMale"
+              optionLabel="name"
+              name="sex"
+              optionValue="code"
+              formControlName="sex"
+            ></p-selectButton>
+          </div>
+        </div>
+        <div class="field grid">
+          <label
+            htmlFor="birthDate"
+            class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+            >出生日期:<span style="color: firebrick">*</span></label
+          >
+          <div class="col-12 md:col-9">
+            <p-calendar
+              [showIcon]="true"
+              name="birthDate"
+              [selectOtherMonths]="true"
+              dateFormat="yy-mm-dd"
+              formControlName="birthDate"
+              inputId="birthDate"
+            ></p-calendar>
+          </div>
+        </div>
+        <div class="field grid">
+          <label
+            htmlFor="educationLevel"
+            class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+            >最高学历:<span style="color: firebrick">*</span></label
+          >
+          <div class="col-12 md:col-9">
+            <p-dropdown
+              [options]="educationLevels"
+              [style]="{ 'font-size': 'large' }"
+              optionLabel="name"
+              name="educationLevel"
+              formControlName="educationLevel"
+              optionValue="code"
+            ></p-dropdown>
+          </div>
+        </div>
+        <div class="field grid justify-content-center">
+          <button type="submit" pButton pRipple (click)="submit()">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
