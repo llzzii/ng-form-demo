@@ -33,7 +33,9 @@
               "src/styles.scss",
               "src/assets/theme.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/numbro/dist/languages.min.js"
+            ]
           },
           "configurations": {
             "production": {

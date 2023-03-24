@@ -12,6 +12,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./form-demo2/form-demo2.module').then((m) => m.FormDemo2Module)
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./home/home.module').then((m) => m.HomeModule)
+  },
 ];
 
 @NgModule({

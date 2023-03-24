@@ -1,0 +1,64 @@
+<div class="grid">
+  <div class="col-12">
+    <label
+      htmlFor="name"
+      class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+      >输入:
+    </label>
+    <div class="col-12 md:col-9">
+      <input
+        pInputText
+        id="name"
+        type="text"
+        name="name"
+        placeholder="输入"
+        [(ngModel)]="number_input"
+        (ngModelChange)="setNumber2()"
+      />
+    </div>
+  </div>
+  <div class="col-12">
+    <label
+      htmlFor="name"
+      class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+      >格式化参数:
+    </label>
+    <div class="col-12 md:col-9">
+      <textarea
+        rows="5"
+        cols="30"
+        pInputTextarea
+        [(ngModel)]="formatAgrStr"
+        (ngModelChange)="setNumber()"
+      ></textarea>
+    </div>
+  </div>
+  <div class="col-12">
+    <label
+      htmlFor="name"
+      class="col-12 mb-3 md:col-3 md:mb-0 text-xl justify-content-end"
+      >输出:
+    </label>
+    <div class="col-12 md:col-9">
+      <p>
+        {{formatAgrStr}}:{{
+          numbroFn(number_input).format(formatAgr)
+        }}
+      </p>
+      <p>{{numbroFn(number_input).formatCurrency()}} </p>
+      <p>{{numbroFn(number_input).formatTime()}} </p>
+      <p>{{numbroFn(number_input).binaryByteUnits()}} </p>
+      <p>{{numbroFn(number_input).decimalByteUnits()}} </p>
+      <p>{{numbroFn(number_input).byteUnits()}} </p>
+      <p>{{numbroFn(number_input).difference(10)}} </p>
+      <p>{{numbroFn(number_input).add(10).value()}} </p>
+      <p>{{numbroFn(number_input).subtract(10).value()}} </p>
+      <p>{{numbroFn(number_input).multiply(10).value()}} </p>
+      <p>{{numbroFn(number_input).divide(10).value()}} </p>
+      <p>{{numbroFn(number_input).set(10).value()}} </p>
+      <p>{{numbroFn(number_input).value()}} </p>
+      <p>{{numbroFn(number_input).valueOf()}} </p>
+      <p>{{numbroFn.isNumbro(11)}} </p>
+    </div>
+  </div>
+</div>
